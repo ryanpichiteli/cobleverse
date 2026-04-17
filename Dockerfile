@@ -7,8 +7,8 @@ ENV VERSION=1.20.1
 # Memória (6GB para aguentar o modpack de 1GB)
 ENV MEMORY=6G
 
-# Modpack Customizado (Google Drive)
-ENV GENERIC_PACK=https://drive.google.com/uc?export=download&id=17S4T1QQ6lRAncNdJdU6XOw9t_vUd2FBS&confirm=t
+# Modpack Customizado (GitHub Release)
+ENV GENERIC_PACK=https://github.com/ryanpichiteli/cobleverse/releases/download/piru/Cobleverse.dos.Crias.1.0.0.zip
 ENV SKIP_GENERIC_PACK_UPDATE_CHECK=true
 
 # RCON e Operadores
