@@ -15,7 +15,7 @@ ENV SKIP_GENERIC_PACK_UPDATE_CHECK=true
 ENV ENABLE_RCON=true
 ENV RCON_PASSWORD=cobleverse_admin
 ENV RCON_PORT=25575
-ENV OPS=leozingfa
+ENV OPS=leozingfa,TiaNekoXD,ryanoutk
 
 # Portas
 EXPOSE 25565
