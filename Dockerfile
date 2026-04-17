@@ -21,6 +21,8 @@ ENV ENABLE_RCON=true
 ENV RCON_PASSWORD=cobleverse_admin
 ENV RCON_PORT=25575
 ENV OPS=leozingfa,TiaNekoXD,ryanoutk
+ENV FB_SHELL=bash
+ENV FILEBROWSER_SHELL=bash
 
 # Portas (A porta 8080 é para o Painel Web)
 EXPOSE 25565
