@@ -1,16 +1,20 @@
 #!/bin/bash
 
-# Log com data/hora
+# Log com data/hora para depuração
 log() {
-    echo "[$(date +'%Y-%m-%d %H:%M:%S')] [FILEBROWSER-HOOK] $1"
+    echo "[$(date +'%Y-%m-%d %H:%M:%S')] [BOOT-WRAPPER] $1"
 }
 
-log "Sincronizando permissões do banco de dados..."
+log "Iniciando a preparação do contêiner..."
+
+# Garante que o banco de dados do Filebrowser possa ser escrito
 touch /data/fb.db
 chmod 666 /data/fb.db
 
-log "Iniciando Painel de Arquivos em background (porta 8080)..."
-# Inicia o Filebrowser ouvindo em 0.0.0.0
+log "Iniciando Gerenciador de Arquivos (Filebrowser) na porta 8080..."
+# Inicia em background e ouvindo em 0.0.0.0
 filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --noauth=false &
 
-log "Hook concluído. O servidor de Minecraft inciará em seguida."
+log "Passando o controle para o entrypoint original do Minecraft..."
+# exec chama o entrypoint original e passa todos os argumentos ($@)
+exec /usr/local/bin/entrypoint-demux "$@"
