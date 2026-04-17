@@ -11,5 +11,11 @@ ENV MEMORY=4G
 ENV MODRINTH_PROJECTS=cobblemon,fabric-api,architectury-api
 ENV MODRINTH_DOWNLOAD_DEPENDENCIES=required
 
-# Porta
+# RCON (Console Remoto)
+ENV ENABLE_RCON=true
+ENV RCON_PASSWORD=cobleverse_admin
+ENV RCON_PORT=25575
+
+# Portas (Minecraft e RCON)
 EXPOSE 25565
+EXPOSE 25575
