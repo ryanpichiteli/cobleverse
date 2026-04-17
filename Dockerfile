@@ -8,7 +8,7 @@ ENV VERSION=1.20.1
 ENV MEMORY=4G
 
 # Mods e Dependências
-ENV MODRINTH_PROJECTS=cobblemon,fabric-api,architecture-api
+ENV MODRINTH_PROJECTS=cobblemon,fabric-api,architectury-api
 ENV MODRINTH_DOWNLOAD_DEPENDENCIES=required
 
 # Porta
