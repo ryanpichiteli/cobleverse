@@ -15,6 +15,10 @@ log "Iniciando Gerenciador de Arquivos (Filebrowser) na porta 8080..."
 # Inicia em background (removido --shell que causou erro)
 filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --noauth=false &
 
+# Aguarda o painel subir e força a ativação do terminal no banco de dados
+sleep 5
+filebrowser config set --shell bash --database /data/fb.db
+
 log "Procurando o comando original do Minecraft..."
 # Procura em locais comuns
 if [ -f /usr/local/bin/entrypoint-demux ]; then
