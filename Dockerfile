@@ -8,7 +8,7 @@ ENV VERSION=1.21.1
 ENV MEMORY=6G
 
 # Modpack Customizado (GitHub Release)
-ENV GENERIC_PACK=https://github.com/ryanpichiteli/cobleverse/releases/download/piru/Cobleverse.dos.Crias.1.0.0.zip
+ENV GENERIC_PACK=https://github.com/ryanpichiteli/cobleverse/releases/download/bucetao/Cobleverse.dos.Crias.1.0.0.zip
 ENV SKIP_GENERIC_PACK_UPDATE_CHECK=true
 
 # RCON e Operadores
