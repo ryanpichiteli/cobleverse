@@ -2,7 +2,7 @@ FROM itzg/minecraft-server:java17
 
 ENV EULA=TRUE
 ENV TYPE=FABRIC
-ENV VERSION=1.20.1
+ENV VERSION=1.21.1
 
 # Memória (6GB para aguentar o modpack de 1GB)
 ENV MEMORY=6G
