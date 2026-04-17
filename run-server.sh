@@ -7,17 +7,21 @@ log() {
 
 log "Iniciando a preparação do contêiner..."
 
-# Garante que o banco de dados do Filebrowser possa ser escrito
+# Garante que o banco de dados do Filebrowser exista
 touch /data/fb.db
-chmod 666 /data/fb.db
 
-log "Iniciando Gerenciador de Arquivos (Filebrowser) na porta 8080..."
-# Inicia em background (removido --shell que causou erro)
+log "Corrigindo permissões da pasta /data para o usuário minecraft (1000)..."
+# Isso garante que mods enviados via Filebrowser sejam legíveis pelo servidor
+chown -R 1000:1000 /data
+chmod -R u+rwX /data
+
+log "Configurando Gerenciador de Arquivos (Filebrowser)..."
+# Configura o shell antes de iniciar o processo para evitar lock no banco de dados
+filebrowser config set --shell bash --database /data/fb.db 2>/dev/null || \
+filebrowser config init --database /data/fb.db && filebrowser config set --shell bash --database /data/fb.db
+
+log "Iniciando Filebrowser na porta 8080..."
 filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --noauth=false &
-
-# Aguarda o painel subir e força a ativação do terminal no banco de dados
-sleep 5
-filebrowser config set --shell bash --database /data/fb.db
 
 log "Procurando o comando original do Minecraft..."
 # Procura em locais comuns
