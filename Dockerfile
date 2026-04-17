@@ -27,11 +27,9 @@ EXPOSE 25565
 EXPOSE 25575
 EXPOSE 8080
 
-# Script para rodar o Painel e o Minecraft sem conflito de argumentos
-RUN echo '#!/bin/bash\n\
-filebrowser -r /data -p 8080 --database /data/fb.db --noauth=false &\n\
-exec /start' > /usr/local/bin/run-server.sh && \
-chmod +x /usr/local/bin/run-server.sh
+# Adicionar script de inicialização robusto
+COPY run-server.sh /usr/local/bin/run-server.sh
+RUN chmod +x /usr/local/bin/run-server.sh
 
 # Comando final
 CMD ["/usr/local/bin/run-server.sh"]
