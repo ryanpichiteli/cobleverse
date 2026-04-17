@@ -27,9 +27,11 @@ EXPOSE 25565
 EXPOSE 25575
 EXPOSE 8080
 
-# Adicionar script de Entrypoint customizado
+# Adicionar script de Entrypoint customizado e corrigir quebras de linha do Windows (CRLF)
 COPY run-server.sh /usr/local/bin/run-server.sh
-RUN chmod +x /usr/local/bin/run-server.sh
+RUN apt-get update && apt-get install -y sed && \
+    sed -i 's/\r$//' /usr/local/bin/run-server.sh && \
+    chmod +x /usr/local/bin/run-server.sh
 
 # Definir o Wrapper como o ENTRYPOINT oficial
 ENTRYPOINT ["/usr/local/bin/run-server.sh"]
