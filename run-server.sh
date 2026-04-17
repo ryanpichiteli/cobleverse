@@ -12,8 +12,8 @@ touch /data/fb.db
 chmod 666 /data/fb.db
 
 log "Iniciando Gerenciador de Arquivos (Filebrowser) na porta 8080..."
-# Inicia em background e ouvindo em 0.0.0.0
-filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --noauth=false &
+# Inicia em background e habilita o Shell integrado
+filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --shell bash --noauth=false &
 
 log "Procurando o comando original do Minecraft..."
 # Procura em locais comuns
