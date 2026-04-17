@@ -27,5 +27,11 @@ EXPOSE 25565
 EXPOSE 25575
 EXPOSE 8080
 
-# Comando para rodar o Painel em background e o Minecraft em foreground
-CMD ["sh", "-c", "filebrowser -r /data -p 8080 --database /data/filebrowser.db & /start"]
+# Script para rodar o Painel e o Minecraft sem conflito de argumentos
+RUN echo '#!/bin/bash\n\
+filebrowser -r /data -p 8080 --database /data/fb.db --noauth=false &\n\
+exec /start' > /usr/local/bin/run-server.sh && \
+chmod +x /usr/local/bin/run-server.sh
+
+# Comando final
+CMD ["/usr/local/bin/run-server.sh"]
