@@ -17,4 +17,4 @@ filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --noauth=false &
 
 log "Passando o controle para o entrypoint original do Minecraft..."
 # exec chama o entrypoint original e passa todos os argumentos ($@)
-exec /usr/local/bin/entrypoint-demux "$@"
+exec entrypoint-demux "$@"
