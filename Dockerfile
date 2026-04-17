@@ -1,7 +1,7 @@
 FROM itzg/minecraft-server:java21
 
-# Instalação do Filebrowser (Gerenciador de Arquivos Web) e mcrcon (Console)
-RUN apt-get update && apt-get install -y curl mcrcon && \
+# Instalação do Filebrowser (Gerenciador de Arquivos Web)
+RUN apt-get update && apt-get install -y curl && \
     curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
