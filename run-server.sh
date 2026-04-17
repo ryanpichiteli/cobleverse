@@ -11,8 +11,8 @@ touch /data/fb.db
 chmod 666 /data/fb.db
 
 log "Iniciando Painel de Arquivos (Filebrowser) na porta 8080..."
-# Inicia o Filebrowser em background
-filebrowser -r /data -p 8080 --database /data/fb.db --noauth=false &
+# Inicia o Filebrowser ouvindo em todas as interfaces (necessário para o Railway)
+filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --noauth=false &
 
 log "Iniciando Servidor de Minecraft..."
 # Inicia o servidor de Minecraft em foreground (passando o controle total para o /start)
