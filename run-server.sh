@@ -15,6 +15,23 @@ log "Iniciando Gerenciador de Arquivos (Filebrowser) na porta 8080..."
 # Inicia em background e ouvindo em 0.0.0.0
 filebrowser -a 0.0.0.0 -r /data -p 8080 --database /data/fb.db --noauth=false &
 
-log "Passando o controle para o entrypoint original do Minecraft..."
-# exec chama o entrypoint original e passa todos os argumentos ($@)
-exec entrypoint-demux "$@"
+log "Procurando o comando original do Minecraft..."
+# Procura em locais comuns
+if [ -f /usr/local/bin/entrypoint-demux ]; then
+    CMD="/usr/local/bin/entrypoint-demux"
+elif [ -f /usr/bin/entrypoint-demux ]; then
+    CMD="/usr/bin/entrypoint-demux"
+elif [ -f /entrypoint-demux ]; then
+    CMD="/entrypoint-demux"
+else
+    # Busca profunda se não achou nos comuns
+    CMD=$(find /usr /usr/local -name "entrypoint-demux" 2>/dev/null | head -n 1)
+fi
+
+if [ -n "$CMD" ]; then
+    log "Comando encontrado em: $CMD. Iniciando..."
+    exec "$CMD" "$@"
+else
+    log "AVISO: entrypoint-demux não encontrado. Tentando inicialização direta via /start..."
+    exec /start
+fi
