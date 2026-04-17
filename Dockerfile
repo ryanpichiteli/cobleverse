@@ -1,5 +1,10 @@
 FROM itzg/minecraft-server:java21
 
+# Instalação do Filebrowser (Gerenciador de Arquivos Web)
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 ENV EULA=TRUE
 ENV TYPE=FABRIC
 ENV VERSION=1.21.1
@@ -17,6 +22,10 @@ ENV RCON_PASSWORD=cobleverse_admin
 ENV RCON_PORT=25575
 ENV OPS=leozingfa,TiaNekoXD,ryanoutk
 
-# Portas
+# Portas (A porta 8080 é para o Painel Web)
 EXPOSE 25565
 EXPOSE 25575
+EXPOSE 8080
+
+# Comando para rodar o Painel em background e o Minecraft em foreground
+CMD ["sh", "-c", "filebrowser -r /data -p 8080 --database /data/filebrowser.db & /start"]
