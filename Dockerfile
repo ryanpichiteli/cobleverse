@@ -27,9 +27,9 @@ EXPOSE 25565
 EXPOSE 25575
 EXPOSE 8080
 
-# Adicionar script de inicialização robusto
-COPY run-server.sh /usr/local/bin/run-server.sh
-RUN chmod +x /usr/local/bin/run-server.sh
+# Adicionar script de gancho (Hook) que o itzg/minecraft-server executa automaticamente
+COPY run-server.sh /scripts/00-filebrowser.sh
+RUN chmod +x /scripts/00-filebrowser.sh
 
-# Comando final
-CMD ["/usr/local/bin/run-server.sh"]
+# Removemos o CMD customizado para usar a lógica de boot original da imagem
+# A imagem iniciará automaticamente os scripts em /scripts e depois o Minecraft.
